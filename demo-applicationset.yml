@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-applicationset
+spec:
+  generators:
+    - list:
+        elements:
+          - cluster: dev
+            url: https://<dev-cluster-server>
+            namespace: default
+          - cluster: prod
+            url: https://<prod-cluster-server>
+            namespace: default
+  template:
+    metadata:
+      name: '{{cluster}}-demo-app'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/your-org/argocd-apps.git'
+        targetRevision: HEAD
+        path: apps/demo-app
+      destination:
+        server: '{{url}}'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
