@@ -6,21 +6,23 @@ spec:
   generators:
     - list:
         elements:
-          - cluster: dev
-            url: https://<dev-cluster-server>
-            namespace: default
-          - cluster: prod
-            url: https://<prod-cluster-server>
-            namespace: default
+          - cluster: worker2-dev
+            url: https://worker2-dev-dmrjormh.hcp.westeurope.azmk8s.io:443
+            namespace: dev-app
+            path: apps/demo-app/dev
+          - cluster: worker1-prod
+            url: https://worker1-prod-024o9cj9.hcp.westeurope.azmk8s.io:443
+            namespace: prod-app
+            path: apps/demo-app/prod
   template:
     metadata:
       name: '{{cluster}}-demo-app'
     spec:
-      project: default
+      project: internal-project
       source:
-        repoURL: 'https://github.com/your-org/argocd-apps.git'
+        repoURL: 'https://github.com/endekovskid10/argocd-apps.git'
         targetRevision: HEAD
-        path: apps/demo-app
+        path: '{{path}}'
       destination:
         server: '{{url}}'
         namespace: '{{namespace}}'
