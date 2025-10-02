@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: demo-applicationset
+  name: poc-applicationset
 spec:
   generators:
     - list:
