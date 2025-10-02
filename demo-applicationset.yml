@@ -7,11 +7,11 @@ spec:
     - list:
         elements:
           - cluster: worker2-dev
-            url: https://worker2-dev-dmrjormh.hcp.westeurope.azmk8s.io:443
+            url: https://worker2-dev-hv7zz0tb.hcp.westeurope.azmk8s.io:443
             namespace: dev-app
             path: apps/demo-app/dev
           - cluster: worker1-prod
-            url: https://worker1-prod-024o9cj9.hcp.westeurope.azmk8s.io:443
+            url: https://worker1-prod-v2mfp19j.hcp.westeurope.azmk8s.io:443
             namespace: prod-app
             path: apps/demo-app/prod
   template:
